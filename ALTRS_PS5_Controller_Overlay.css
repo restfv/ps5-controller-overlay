@@ -1,0 +1,57 @@
+/* ALTRS — black / metallic gold / neon pink DualSense edit skin
+   Intended for Gamepad Viewer via the editcss= URL parameter.
+   Note: selector support varies by Gamepad Viewer skin/version. */
+
+.edit {
+  filter: grayscale(1) brightness(0.42) contrast(1.2);
+}
+
+/* Give the controller shell a deep black, metallic finish where supported. */
+.edit svg,
+.edit .controller,
+.edit [data-name] {
+  --altrs-black: #09090d;
+  --altrs-gold: #f5c451;
+  --altrs-pink: #ff4fa3;
+}
+
+/* Buttons and controls: dark at rest, gold/pink glow while pressed.
+   Gamepad Viewer versions may expose pressed states differently. */
+.edit [data-name] {
+  fill: #111116;
+  stroke: #b58a35;
+  stroke-width: 1.5px;
+  transition: fill 90ms ease, stroke 90ms ease, filter 90ms ease;
+}
+
+.edit [data-name][data-pressed],
+.edit [data-name].pressed,
+.edit [data-pressed="true"] {
+  fill: #ff4fa3 !important;
+  stroke: #ffd36a !important;
+  filter: drop-shadow(0 0 4px #ff4fa3) drop-shadow(0 0 7px #f5c451);
+}
+
+/* Touchpad branding attempt: position the label over the touchpad area.
+   Exact placement depends on the selected Gamepad Viewer DualSense skin. */
+.edit::after {
+  content: "ALTRS";
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -50%);
+  color: #f5c451;
+  font-family: "Arial Black", "Eurostile", "Arial", sans-serif;
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-shadow: 0 0 3px #f5c451, 0 0 8px #ff4fa3;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Gold trim with a subtle pink accent. */
+.edit * {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
