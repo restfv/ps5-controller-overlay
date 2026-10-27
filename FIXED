@@ -1,0 +1,54 @@
+/* ALTRS DualSense edit CSS for Gamepad Viewer
+   Fix: do NOT apply a global brightness/grayscale filter to the controller.
+   Colors use the Gamepad Viewer .button/.trigger pressed-state classes. */
+
+/* Keep the original controller artwork visible. */
+.edit {
+  filter: none !important;
+}
+
+/* Button idle state: deep charcoal with metallic gold edges. */
+.edit .button,
+.edit .trigger {
+  fill: #17151b !important;
+  stroke: #c89b45 !important;
+  stroke-width: 1.5px;
+  transition: fill 100ms ease, stroke 100ms ease, filter 100ms ease;
+}
+
+/* Pressed buttons: pink fill with a gold highlight. */
+.edit .button.pressed,
+.edit .trigger.pressed,
+.edit [data-name].pressed {
+  fill: #ff4fa3 !important;
+  stroke: #ffd36a !important;
+  filter: drop-shadow(0 0 3px #ff4fa3) drop-shadow(0 0 5px #f5c451);
+}
+
+/* Some Gamepad Viewer elements use a data-name attribute rather than .button. */
+.edit [data-name] {
+  transition: fill 100ms ease, stroke 100ms ease, filter 100ms ease;
+}
+
+.edit [data-name].pressed {
+  fill: #ff4fa3 !important;
+  stroke: #ffd36a !important;
+  filter: drop-shadow(0 0 3px #ff4fa3) drop-shadow(0 0 5px #f5c451);
+}
+
+/* ALTRS touchpad branding overlay. Position may need fine-tuning for a different skin. */
+.edit::after {
+  content: "ALTRS";
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -50%);
+  color: #f5c451;
+  font-family: "Arial Black", "Eurostile", Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-shadow: 0 0 3px #f5c451, 0 0 8px #ff4fa3;
+  pointer-events: none;
+  white-space: nowrap;
+}
